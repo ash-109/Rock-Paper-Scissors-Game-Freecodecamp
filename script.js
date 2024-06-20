@@ -22,9 +22,25 @@ function getRandomComputerResult() {
   console.log(hasPlayerWonTheRound("Scissors", "Rock")); 
 
       //
+       let playerScore=0;
+        let computerScore=0;
       function getRoundResults(userOption) {
         const computerResult = getRandomComputerResult();
-        
+       
+        if (hasPlayerWonTheRound = true) {
+         playerScore++
+
+          return `Player wins! ${userOption} beats ${computerResult}`  
+
+        }
+        if (userOption === computerResult) {
+          return `It's a tie! Both chose ${userOption}`
+        }
+        if (hasPlayerWonTheRound = false) {
+          computerScore++
+          `Computer wins! ${computerResult} beats ${userOption} `
+        }
+
       }
       
       console.log(getRoundResults("Rock"));
