@@ -45,3 +45,17 @@ function getRandomComputerResult() {
       
       console.log(getRoundResults("Rock"));
       console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
+
+const playerScoreSpanElement = document.getElementById("player-score");
+const computerScoreSpanElement = document.getElementById("computer-score");
+const roundResultsMsg = document.getElementById("results-msg");
+
+function showResults(userOption) {
+  const resultMessage = getRoundResults(userOption);
+
+  playerScoreSpanElement.innerText = playerScore;
+  computerScoreSpanElement.innerText = computerScore;
+  roundResultsMsg.innerText = resultMessage;
+};
+
+showResults("Rock");
