@@ -56,13 +56,15 @@ const resetGameBtn = document.getElementById("reset-game-btn");
 function showResults(userOption) {
   const resultMessage = getRoundResults(userOption);
 
+  // AFFICHAGE DES SCORES ET DU RESULTAT
   playerScoreSpanElement.innerText = playerScore;
   computerScoreSpanElement.innerText = computerScore;
   roundResultsMsg.innerText = resultMessage;
 
 
+// MESSAGE A AFFICHER EN FONCTION DU RESULTAT ET AFFICHAGE DU RESET
 
-
+  // (Methode perso)
   if (playerScore == 3) {
     winnerMsgElement.innerText = "Player has won the game!"
   }
@@ -73,7 +75,7 @@ function showResults(userOption) {
     resetGameBtn.style.display ='block'
     optionsContainer.style.display='none'
     
-    // 2e methode
+    // 2e methode (methode du cours)
   // if (playerScore === 3 || computerScore === 3) {
   //   winnerMsgElement.innerText = `${
   //     playerScore === 3 ? "Player" : "Computer"
@@ -81,4 +83,32 @@ function showResults(userOption) {
   }
 };
 
-showResults("Rock");
+function resetGame() {
+playerScore =0;
+computerScore=0;
+playerScoreSpanElement.innerText = playerScore
+computerScoreSpanElement.innerText=computerScore
+resetGameBtn.style.display ='none'
+optionsContainer.style.display='block'
+winnerMsgElement.innerText=""
+roundResultsMsg.innerText=""
+
+};
+
+resetGameBtn.addEventListener("click", resetGame);
+
+const rockBtn = document.getElementById("rock-btn");
+const paperBtn = document.getElementById("paper-btn");
+const scissorsBtn = document.getElementById("scissors-btn");
+
+rockBtn.addEventListener("click", function () {
+  showResults("Rock");
+});
+
+paperBtn.addEventListener("click", function () {
+  showResults("Paper");
+});
+
+scissorsBtn.addEventListener("click", function () {
+  showResults("Scissors");
+});
