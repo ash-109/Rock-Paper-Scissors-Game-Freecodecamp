@@ -1,50 +1,43 @@
-
-
-    //CHOIX ALEATOIRE DE L'ORDINATEUR 
+//CHOIX ALEATOIRE DE L'ORDINATEUR
 function getRandomComputerResult() {
-    const options = ["Rock", "Paper", "Scissors"];
-    const randomIndex = Math.floor(Math.random() * options.length);
-    return options[randomIndex];
-  }
-  console.log(getRandomComputerResult());
-
-
-      //SAVOIR SI LE JOUEUR A GAGNE LE ROUND
-  function hasPlayerWonTheRound(player, computer) {
-    if ((player === "Rock" && computer === "Scissors") ||
-        (player === "Scissors" && computer === "Paper") ||
-        (player === "Paper" && computer === "Rock")) {
-        return true;
-    }
-    return false;
+  const options = ["Rock", "Paper", "Scissors"];
+  const randomIndex = Math.floor(Math.random() * options.length);
+  return options[randomIndex];
 }
-  console.log(hasPlayerWonTheRound("Rock", "Scissors")); 
-  console.log(hasPlayerWonTheRound("Scissors", "Rock")); 
+console.log(getRandomComputerResult());
 
-      //
-       let playerScore=0;
-        let computerScore=0;
-      function getRoundResults(userOption) {
-        const computerResult = getRandomComputerResult();
-       
-        if (hasPlayerWonTheRound = true) {
-         playerScore++
+//SAVOIR SI LE JOUEUR A GAGNE LE ROUND
+function hasPlayerWonTheRound(player, computer) {
+  return (
+    (player === "Rock" && computer === "Scissors") ||
+    (player === "Scissors" && computer === "Paper") ||
+    (player === "Paper" && computer === "Rock")
+  ); 
+}
+console.log(hasPlayerWonTheRound("Rock", "Scissors"));
+console.log(hasPlayerWonTheRound("Scissors", "Rock"));
 
-          return `Player wins! ${userOption} beats ${computerResult}`  
+//
+let playerScore = 0;
+let computerScore = 0;
 
-        }
-        if (userOption === computerResult) {
-          return `It's a tie! Both chose ${userOption}`
-        }
-        if (hasPlayerWonTheRound = false) {
-          computerScore++
-          `Computer wins! ${computerResult} beats ${userOption} `
-        }
+function getRoundResults(userOption) {
+  const computerResult = getRandomComputerResult();
 
-      }
-      
-      console.log(getRoundResults("Rock"));
-      console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
+
+  if (hasPlayerWonTheRound(userOption, computerResult)) {
+    playerScore++;
+    return `Player wins! ${userOption} beats ${computerResult}`;
+  } else if (computerResult === userOption) {
+    return `It's a tie! Both chose ${userOption}`;
+  } else {
+    computerScore++;
+    return `Computer wins! ${computerResult} beats ${userOption}`;
+  }
+}
+
+console.log(getRoundResults("Rock"));
+console.log("Player Score: ", playerScore, "Computer Score: ", computerScore);
 
 const playerScoreSpanElement = document.getElementById("player-score");
 const computerScoreSpanElement = document.getElementById("computer-score");
@@ -61,39 +54,37 @@ function showResults(userOption) {
   computerScoreSpanElement.innerText = computerScore;
   roundResultsMsg.innerText = resultMessage;
 
-
-// MESSAGE A AFFICHER EN FONCTION DU RESULTAT ET AFFICHAGE DU RESET
+  // MESSAGE A AFFICHER EN FONCTION DU RESULTAT ET AFFICHAGE DU RESET
 
   // (Methode perso)
-  if (playerScore == 3) {
-    winnerMsgElement.innerText = "Player has won the game!"
+  if (playerScore === 3) {
+    winnerMsgElement.innerText = "Player has won the game!";
   }
-  if (computerScore ==3) {
-    winnerMsgElement.innerText = "Computer has won the game!"
+  if (computerScore === 3) {
+    winnerMsgElement.innerText = "Computer has won the game!";
   }
-  if (playerScore ==3 || computerScore ==3) {
-    resetGameBtn.style.display ='block'
-    optionsContainer.style.display='none'
-    
+  if (playerScore === 3 || computerScore === 3) {
+    resetGameBtn.style.display = "block";
+    optionsContainer.style.display = "none";}
+
     // 2e methode (methode du cours)
-  // if (playerScore === 3 || computerScore === 3) {
-  //   winnerMsgElement.innerText = `${
-  //     playerScore === 3 ? "Player" : "Computer"
-  //   } has won the game!`;
-  }
-};
+  //   if (playerScore === 3 || computerScore === 3) {
+  //     winnerMsgElement.innerText = `${
+  //       playerScore === 3 ? "Player" : "Computer"
+  //     } has won the game!`;
+  // }
+}
 
 function resetGame() {
-playerScore =0;
-computerScore=0;
-playerScoreSpanElement.innerText = playerScore
-computerScoreSpanElement.innerText=computerScore
-resetGameBtn.style.display ='none'
-optionsContainer.style.display='block'
-winnerMsgElement.innerText=""
-roundResultsMsg.innerText=""
-
-};
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreSpanElement.innerText = playerScore;
+  computerScoreSpanElement.innerText = computerScore;
+  resetGameBtn.style.display = "none";
+  optionsContainer.style.display = "block";
+  winnerMsgElement.innerText = "";
+  roundResultsMsg.innerText = "";
+}
 
 resetGameBtn.addEventListener("click", resetGame);
 
